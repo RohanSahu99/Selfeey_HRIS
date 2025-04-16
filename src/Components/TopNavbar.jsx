@@ -5,8 +5,40 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Bell, UserCircle, Gear } from 'phosphor-react';
 
-export default function TopNavbar({ topLinks }) {
+export default function TopNavbar() {
   const pathname = usePathname();
+
+  // Determine which links to show based on the current path
+  const getNavLinks = () => {
+    if (pathname.startsWith('/dashboard/myspace') || pathname.startsWith('/dashboard/employees')) {
+      return [
+        { href: '/dashboard/myspace/overview', label: 'MySpace' },
+        { href: '/dashboard/employees/employee', label: 'Employees' }
+      ];
+    }
+    if (pathname.startsWith('/dashboard/leave')) {
+      return [
+        { href: '/dashboard/leave/myData/leaveSummary', label: 'My Data' },
+        { href: '/dashboard/leave/holidays', label: 'Holidays' }
+      ];
+    }
+    if (pathname.startsWith('/dashboard/admin')) {
+      return [
+        { href: '/dashboard/admin/employees', label: 'Users' },
+        { href: '/dashboard/admin/events', label: 'Events & Holidays' },
+        { href: '/dashboard/admin/leaveRequest', label: 'Leave Requests' },
+        { href: '/dashboard/admin/recruitment', label: 'Recruitments' },
+        { href: '/dashboard/admin/analytics', label: 'Analytics' }
+      ];
+    }
+    if (pathname.startsWith('/dashboard/onboarding')) {
+      return [
+        { href: '/dashboard/onboarding', label: 'Onboarding' }
+      ];
+    }
+  };
+
+  const navLinks = getNavLinks();
 
   return (
     <AppBar
@@ -25,10 +57,8 @@ export default function TopNavbar({ topLinks }) {
     >
       <Toolbar>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          {topLinks.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (!topLinks.some((l) => l.href === pathname) && link === topLinks[0]);
+          {navLinks?.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
 
             return (
               <Link href={link.href} passHref key={link.href}>
