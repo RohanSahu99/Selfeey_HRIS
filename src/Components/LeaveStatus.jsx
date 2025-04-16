@@ -13,6 +13,7 @@ import {
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
+import { Calendar } from 'phosphor-react';
 
 const leaveRequests = [
   {
@@ -82,7 +83,7 @@ export default function LeaveApprovalStatusPage() {
                     {request.type}
                   </Typography>
                   <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                    <CalendarMonthIcon fontSize="small" sx={{ mr: 0.5 }} />
+                    <Calendar size={22}  />
                     <Typography variant="body2">
                       {request.from} → {request.to}
                     </Typography>
@@ -90,34 +91,12 @@ export default function LeaveApprovalStatusPage() {
                 </Box>
               </Box>
 
-              <Box sx={{ textAlign: 'right' }}>
+              <Box sx={{ textAlign: 'right',width:'100px',display:"flex",justifyContent:'center',alignItems:'center' }}>
                 <Chip
                   label={request.status}
                   color={statusColors[request.status]}
-                  sx={{ mb: 1 }}
+                  sx={{width:'90%',borderRadius:"5px"}}
                 />
-
-                {request.status === 'Pending' && (
-                  <Box>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="success"
-                      sx={{ mr: 1 }}
-                      startIcon={<EventAvailableIcon />}
-                    >
-                      Approve
-                    </Button>
-                    <Button
-                      size="small"
-                      variant="outlined"
-                      color="error"
-                      startIcon={<EventBusyIcon />}
-                    >
-                      Reject
-                    </Button>
-                  </Box>
-                )}
               </Box>
             </Paper>
           </Grid>

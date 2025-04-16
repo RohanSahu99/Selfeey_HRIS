@@ -9,12 +9,9 @@ import {
   Tooltip,
 } from '@mui/material';
 import Link from 'next/link';
-import SettingsIcon from '@mui/icons-material/Settings';
-import HomeIcon from '@mui/icons-material/Home';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+
+// Lucide Icons
+import { House, Users, Airplane, CalendarCheck, UserGear  } from 'phosphor-react';
 
 const drawerWidth = 0;
 
@@ -22,11 +19,11 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const navItems = [
-    { icon: <HomeIcon sx={{ fontSize: 27,color:"white" }} />, href: '/dashboard/myspace/overview', label: 'Home' },
-    { icon: <AssignmentIndIcon sx={{ fontSize: 27,color:"white"}} />, href: '/dashboard/onboarding', label: 'Onboarding' },
-    { icon: <BeachAccessIcon sx={{ fontSize: 27,color:"white" }} />, href: '/dashboard/leave/myData/leaveSummary', label: 'Leave Tracker' },
-    { icon: <CalendarTodayIcon sx={{ fontSize: 27,color:"white"}} />, href: '/dashboard/attendance', label: 'Attendance' },
-    { icon: <AdminPanelSettingsIcon sx={{ fontSize: 27,color:"white" }} />, href: '/dashboard/admin/employees', label: 'Admin' },
+    { icon: <House size={24} color="black" />, href: '/dashboard/myspace/overview', label: 'Home' },
+    { icon: <Users size={24}  color="black" />, href: '/dashboard/onboarding', label: 'Onboarding' },
+    { icon: <Airplane size={24}  color="black" />, href: '/dashboard/leave/myData/leaveSummary', label: 'Leave Tracker' },
+    { icon: <CalendarCheck size={24}  color="black" />, href: '/dashboard/attendance', label: 'Attendance' },
+    { icon: <UserGear  size={24}  color="black" />, href: '/dashboard/admin/employees', label: 'Admin' },
   ];
 
   return (
@@ -40,14 +37,17 @@ export default function Sidebar() {
           boxSizing: 'border-box',
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: '#2860f5',
-          color: '#fff',
           paddingTop: 2,
+          background: 'white',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          borderRight: '0.5px solid rgba(0, 0, 0, 0.2)',
+          color: '#fff',
         },
       }}
     >
-      <Typography variant="h6" sx={{ p: 2, color: '#fff' }}>
-        My
+      <Typography variant="h6" sx={{ p: 2, color: 'black' }}>
+        HRIS
       </Typography>
       <List>
         {navItems.map((item, index) => {
@@ -66,13 +66,11 @@ export default function Sidebar() {
                       justifyContent: 'center',
                       borderRadius: 2,
                       transition: 'all 0.3s ease',
-                      backgroundColor: isActive ? '#183a97' : '#d22eff',
+                      backgroundColor: isActive ? '#FAF1E6' : 'transparent',
                       marginBottom: '10px',
                       padding: '5px',
                       '&:hover': {
-                        backgroundColor: isActive
-                          ? '#183a97'
-                          : 'rgba(255, 255, 255, 0.2)',
+                        backgroundColor: '#FAF1E6',
                         transform: 'scale(1.1)',
                       },
                     }}

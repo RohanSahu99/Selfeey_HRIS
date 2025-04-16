@@ -11,33 +11,31 @@ import {
   ListItemText,
   Divider,
 } from '@mui/material';
+import { CheckCircle,SignIn,CalendarCheck,Target     } from 'phosphor-react';
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+
 
 const activities = [
   {
-    icon: <CheckCircleIcon color="success" />,
+    icon: <CheckCircle color="black" />,
     title: 'Task Completed',
     description: 'Finished sourcing candidates for Job ID 1234.',
     time: '2 hours ago',
   },
   {
-    icon: <AccessTimeIcon color="warning" />,
+    icon: <SignIn color="black" />,
     title: 'Checked In',
     description: 'Started the day at 9:00 AM.',
     time: 'Today at 9:00 AM',
   },
   {
-    icon: <EventNoteIcon color="info" />,
+    icon: <CalendarCheck   color="black" />,
     title: 'Meeting Scheduled',
     description: 'Client meeting scheduled for 3 PM.',
     time: 'Today at 3:00 PM',
   },
   {
-    icon: <EmojiEventsIcon color="primary" />,
+    icon: <Target  color="black" />,
     title: 'Goal Achieved',
     description: 'Reached weekly placement goal.',
     time: 'Yesterday',

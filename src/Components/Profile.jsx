@@ -10,10 +10,7 @@ import {
   Divider,
   Button,
 } from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import WorkIcon from '@mui/icons-material/Work';
-import HomeIcon from '@mui/icons-material/Home';
+import { Envelope, DeviceMobile, Buildings, Briefcase } from 'phosphor-react';
 
 export default function EmployeeProfilePage() {
   const employee = {
@@ -27,7 +24,7 @@ export default function EmployeeProfilePage() {
   };
 
   return (
-    <Box >
+    <Box>
       <Paper
         elevation={2}
         sx={{
@@ -53,9 +50,7 @@ export default function EmployeeProfilePage() {
               boxShadow: 3,
             }}
           />
-          <Typography variant="h6" >
-            {employee.name}
-          </Typography>
+          <Typography variant="h6">{employee.name}</Typography>
           <Typography variant="body1" color="text.secondary">
             {employee.position}
           </Typography>
@@ -75,13 +70,14 @@ export default function EmployeeProfilePage() {
           <Divider sx={{ mb: 2 }} />
 
           <Box sx={{ mb: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <EmailIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography>{employee.email}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5, gap: 2 }}>
+              <Envelope size={22} />
+              <Typography variant="body1">{employee.email}</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <PhoneAndroidIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography>{employee.phone}</Typography>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <DeviceMobile size={22} />
+              <Typography variant="body1">{employee.phone}</Typography>
             </Box>
           </Box>
 
@@ -91,13 +87,13 @@ export default function EmployeeProfilePage() {
           <Divider sx={{ mb: 2 }} />
 
           <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <WorkIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography>{employee.department}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5, gap: 2 }}>
+              <Briefcase size={22} />
+              <Typography variant="body1">{employee.department}</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <HomeIcon sx={{ mr: 1, color: 'primary.main' }} />
-              <Typography>{employee.location}</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Buildings size={22} />
+              <Typography variant="body1">{employee.location}</Typography>
             </Box>
           </Box>
         </Box>

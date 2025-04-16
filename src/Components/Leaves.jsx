@@ -2,37 +2,39 @@
 
 import React from 'react';
 import { Box, Grid, Paper, Typography, Button } from '@mui/material';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import EventBusyIcon from '@mui/icons-material/EventBusy';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import {
+  CalendarCheck,
+  Heartbeat,
+  Briefcase   ,
+  FirstAid ,
+} from 'phosphor-react';
 
 const leaves = [
   {
     name: 'Annual Leave',
     available: 12,
     booked: 3,
-    icon: <BeachAccessIcon fontSize="large" sx={{ color: '#1976d2' }} />,
+    icon: <CalendarCheck size={22}   />,
   },
   {
     name: 'Sick Leave',
     available: 8,
     booked: 2,
-    icon: <LocalHospitalIcon fontSize="large" sx={{ color: '#d32f2f' }} />,
+    icon: <Heartbeat size={22} />,
   },
   {
     name: 'Casual Leave',
     available: 5,
     booked: 1,
-    icon: <EventBusyIcon fontSize="large" sx={{ color: '#ed6c02' }} />,
+    icon: <Briefcase   size={22}   />,
   },
   {
     name: 'Maternity Leave',
     available: 90,
     booked: 10,
-    icon: <CalendarMonthIcon fontSize="large" sx={{ color: '#9c27b0' }} />,
+    icon: <FirstAid   size={22}  />,
   },
-];
+];  
 
 export default function LeaveCards() {
   return (
