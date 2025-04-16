@@ -15,6 +15,7 @@ import {
   StyledDataGrid,
   StyledPaper,
 } from "../../../styles/trackerTable";
+import { Plus } from 'phosphor-react';
 
 const mockCandidates = Array.from({ length: 25 }, (_, i) => ({
   id: i + 1,
@@ -101,15 +102,15 @@ const handleDownloadCSV = () => {
   
 
   return (
-    <Box sx={{ p: 1 }}>
+    <Box >
       {/* Header Row */}
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        mb={1}
+        sx={{paddingLeft:"24px",paddingRight:"24px"}}
       >
-        <Typography variant="h5" >
+        <Typography variant="h5">
           Onboarding
         </Typography>
 
@@ -117,14 +118,14 @@ const handleDownloadCSV = () => {
           <Button variant="contained" sx={{ boxShadow: 3, backgroundColor: "#1976d2" }}
            onClick={() => router.push('/dashboard/onboarding/addcandidate')}
           >
-            Add Candidate
+           Add Candidate
           </Button>
         </Box>
       </Box>
 
       {/* Table */}
       <ParentContainer maxWidth="lg">
-                <StyledPaper elevation={0}>
+                <StyledPaper >
                     <SearchContainer>
                         <SearchField
                             variant="outlined"
