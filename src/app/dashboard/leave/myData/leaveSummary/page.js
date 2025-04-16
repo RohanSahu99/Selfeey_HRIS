@@ -77,7 +77,7 @@ export default function MyLeaves() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 1 }}>
+    <Container maxWidth="lg" >
      <Box sx={{mb:2}}
 >
   <Typography variant="h5" >
@@ -105,7 +105,7 @@ export default function MyLeaves() {
     <Typography
       variant="h6"
       gutterBottom
-      sx={{ color: '#3f51b5', fontWeight: 600 }}
+      sx={{ fontWeight: 600 }}
     >
       {key.charAt(0).toUpperCase() + key.slice(1)} Leave
     </Typography>
