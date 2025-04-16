@@ -46,8 +46,8 @@ import {
     
     }))
     export const StyledPaper = styled(Paper)(({ theme }) => ({
-      padding: theme.spacing(3),
-      borderRadius: theme.spacing(2),
+      padding: theme.spacing(3), 
+      borderRadius: theme.spacing(1),
       boxShadow: "0 8px 24px rgba(0, 0, 0, 0.05)",
       width: "100%",
       overflow: "hidden",
