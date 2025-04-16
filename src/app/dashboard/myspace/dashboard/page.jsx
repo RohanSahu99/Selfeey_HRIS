@@ -12,19 +12,11 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
-import {
-  CalendarToday,
-  Cake,
-  Work,
-  EventAvailable,
-  Star
-} from '@mui/icons-material';
+
 import { DataGrid } from '@mui/x-data-grid';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import dayjs from 'dayjs';
+import { CalendarCheck,CalendarBlank,Cake,Target,ChartLine  } from 'phosphor-react';
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -127,8 +119,8 @@ const formatBirthday = (dateString) => {
             minHeight: isMobile ? 'auto' : '350px',
             width:"300px"
           }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <EventAvailable color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <CalendarCheck size={22} />
               <Typography variant="h6">Leave Summary</Typography>
             </Box>
             <Box sx={{ 
@@ -182,8 +174,8 @@ const formatBirthday = (dateString) => {
             minHeight: isMobile ? 'auto' : '350px',
             width:"300px"
           }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <CalendarToday color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <CalendarBlank  size={22} sx={{ mr: 1 }} />
               <Typography variant="h6">Upcoming Holidays</Typography>
             </Box>
             <Box sx={{ 
@@ -193,7 +185,7 @@ const formatBirthday = (dateString) => {
             }}>
               {holidays.map((holiday, index) => (
                 <Box key={index} mb={2}>
-                  <Typography variant="subtitle1" fontWeight="bold">
+                  <Typography variant="subtitle1" >
                     {holiday.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -214,8 +206,8 @@ const formatBirthday = (dateString) => {
             minHeight: isMobile ? 'auto' : '350px',
              width:"300px"
           }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <Cake color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <Cake size={22} sx={{ mr: 1 }} />
               <Typography variant="h6">Upcoming Birthdays</Typography>
             </Box>
             <Box sx={{
@@ -249,8 +241,8 @@ const formatBirthday = (dateString) => {
             minHeight: isMobile ? 'auto' : '350px',
              width:"300px"
           }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <Star color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <Target size={22}  sx={{ mr: 1 }} />
               <Typography variant="h6">Your Goals & Targets</Typography>
             </Box>
             <Box>
@@ -288,8 +280,8 @@ const formatBirthday = (dateString) => {
             minHeight: isMobile ? 'auto' : '350px',
              width:"600px"
           }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <Work color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <ChartLine size={22} sx={{ mr: 1 }} />
               <Typography variant="h6">Performance</Typography>
             </Box>
             <Box sx={{ 
@@ -314,8 +306,8 @@ const formatBirthday = (dateString) => {
         {/* Leave History */}
         <Grid item xs={12}>
           <Paper elevation={3} sx={{ p: 2 }}>
-            <Box display="flex" alignItems="center" mb={2}>
-              <EventAvailable color="primary" sx={{ mr: 1 }} />
+            <Box display="flex" alignItems="center" mb={2} gap={1.5}>
+              <CalendarCheck size={22} sx={{ mr: 1 }} />
               <Typography variant="h6">Your Leave History</Typography>
             </Box>
             <Box sx={{ 
