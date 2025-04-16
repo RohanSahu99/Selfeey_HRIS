@@ -16,6 +16,7 @@ import {
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
+import { Calendar, CheckCircle } from 'phosphor-react';
 
 export default function AttendancePage() {
   const [attendance, setAttendance] = useState({});
@@ -57,14 +58,14 @@ export default function AttendancePage() {
   const absentCount = Object.values(attendance).filter((status) => status === 'absent').length;
 
   return (
-    <Box sx={{ maxWidth: 1100, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 1100, mx: 'auto',}}>
       {/* Page Title */}
       <Typography variant="h5" fontWeight={600} gutterBottom>
-        📊 Attendance Dashboard
+        Attendance Dashboard
       </Typography>
 
       {/* User Info Card */}
-      <Paper sx={{ p: 3, mb: 4, borderRadius: 3, boxShadow: 3 }}>
+      <Paper sx={{ p: 3, mb: 4, borderRadius: 3, boxShadow: 2 }}>
         <Grid container spacing={2} alignItems="center">
           <Grid item>
             <Avatar
@@ -127,32 +128,31 @@ export default function AttendancePage() {
             flexGrow: 1,
           }}
         >
-          <Typography variant="h6" fontWeight={600} mb={2}>
-            📅 Monthly Summary
-          </Typography>
+          <Box display="flex" alignItems="center" gap={1} mb={2}>
+            <Calendar size={22} />
+            <Typography variant="h6" fontWeight={600}>
+              Monthly Summary
+            </Typography>
+          </Box>
 
           <Divider sx={{ mb: 2 }} />
 
-          <Box display="flex" alignItems="center" mb={2}>
-            <Typography
-              variant="body1"
-              sx={{ fontWeight: 500, color: 'green', mr: 1 }}
-            >
-              ✅ Present:
+          <Box display="flex" alignItems="center" gap={1} mb={2}>
+            <CheckCircle size={22} color="green" />
+            <Typography variant="body1" sx={{ fontWeight: 500, color: 'green', mr: 1 }}>
+              Present:
             </Typography>
             <Typography variant="body1" sx={{ fontWeight: 600 }}>
               {presentCount}
             </Typography>
           </Box>
 
-          <Box display="flex" alignItems="center">
-            <Typography
-              variant="body1"
-              sx={{ fontWeight: 500, color: 'red', mr: 1 }}
-            >
-              ❌ Absent:
+          <Box display="flex" alignItems="center" gap={1}>
+            <CheckCircle size={22} color="red" />
+            <Typography variant="body1" sx={{ fontWeight: 500, color: 'red', mr: 1 }}>
+              Absent:
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: 600 }}>
+            <Typography variant="body1" sx={{ fontWeight: 600, }}>
               {absentCount}
             </Typography>
           </Box>
