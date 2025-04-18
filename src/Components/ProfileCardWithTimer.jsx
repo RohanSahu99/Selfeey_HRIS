@@ -71,7 +71,8 @@ export default function ClockTimerCard() {
     // Decorative elements:
     // Typography improvements:
     fontFamily: 'HK Grotesk, Inter, sans-serif',
-    color: '#2d3748'
+    color: '#2d3748',
+    marginTop:'40px'
   }}
 >
 

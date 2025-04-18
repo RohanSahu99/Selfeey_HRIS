@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import HorizontalTabBar from '@/Components/Tabbar';
 import theme from '@/utils/theme';
 import ProfileCardWithTimer from '@/Components/ProfileCardWithTimer';
+import withAuth from '@/utils/ProtectedRoutes';
 
   
 
@@ -36,4 +37,4 @@ const DashBoardPage = () => {
     );
 };
 
-export default DashBoardPage;
+export default withAuth(DashBoardPage);

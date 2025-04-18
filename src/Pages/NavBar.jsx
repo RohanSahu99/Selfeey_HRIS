@@ -1,210 +1,378 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Menu as MenuIcon,
+  Close as CloseIcon,
+  ExpandMore as ExpandMoreIcon,
+} from "@mui/icons-material";
 import {
   AppBar,
   Toolbar,
-  Typography,
+  Box,
+  IconButton,
   Button,
   Menu,
   MenuItem,
-  Fade,
-  Box,
-  IconButton,
-  useTheme,
-} from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import MenuIcon from '@mui/icons-material/Menu';
-import Link from 'next/link';
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Collapse,
+  Paper,
+  Grid,
+  Stack,
+  styled,
+  ListItemButton
+} from "@mui/material";
+import logo from "../../public/selfeeylogobg2.png";
+import Image from "next/image";
 
-const Navbar = () => {
-  const theme = useTheme();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [nestedAnchorEl, setNestedAnchorEl] = useState(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
+const productCategories = [
+  {
+    name: "Human Resources",
+    items: [
+      { name: "HRIS", href: "/products/hris" },
+      { name: "Recruitment", href: "/products/recruitment" },
+      {
+        name: "Recruiter Performance Management System (RPMS)",
+        href: "/products/rpms",
+      },
+    ],
+  },
+];
 
-  // Handle opening of main menu
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+const GradientButton = styled(Button)({
+  background: "linear-gradient(45deg, #d22eff 0%, #2860f5 100%)",
+  color: "white",
+  "&:hover": {
+    background: "linear-gradient(45deg, #b71de0 0%, #1e4db7 100%)",
+  },
+});
+
+export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [productsMenuAnchor, setProductsMenuAnchor] = useState(null);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+
+  const isProductsMenuOpen = Boolean(productsMenuAnchor);
+
+  const handleProductsMenuOpen = (event) => {
+    setProductsMenuAnchor(event.currentTarget);
   };
 
-  // Handle opening of nested menu
-  const handleNestedMenuOpen = (event) => {
-    setNestedAnchorEl(event.currentTarget);
+  const handleProductsMenuClose = () => {
+    setProductsMenuAnchor(null);
   };
 
-  // Handle closing of menus
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setNestedAnchorEl(null);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Toggle mobile menu
-  const handleMobileMenuToggle = () => {
-    setMobileOpen(!mobileOpen);
+  const toggleMobileProducts = () => {
+    setMobileProductsOpen(!mobileProductsOpen);
+  };
+
+  const closeAllMenus = () => {
+    setMobileMenuOpen(false);
+    setProductsMenuAnchor(null);
+    setMobileProductsOpen(false);
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-        boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-      }}
-    >
-      <Toolbar sx={{ justifyContent: 'space-between' }}>
-        {/* Logo */}
-        <Typography
-          variant="h6"
-          component={Link}
-          href="/"
-          sx={{
-            textDecoration: 'none',
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: '1.5rem',
-          }}
-        >
-          MyApp
-        </Typography>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="sticky"
+        sx={{
+          backdropFilter: "blur(6px)",
+         backgroundColor:'#ebf5f4',
+          boxShadow: "none",
+          borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
+        }}
+      >
+        <Toolbar sx={{ maxWidth: "1280px", margin: "0 auto", width: "100%" }}>
+          {/* Logo */}
+          <Box sx={{ flexGrow: { xs: 1, lg: 0 }, mr: 2 }}>
+            <Image
+              src={logo}
+              alt="Selfeey Logo"
+              width={150}
+              height={70}
+              style={{ objectFit: "contain" }}
+            />
+          </Box>
 
-        {/* Desktop Menu */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-          <Button color="inherit" component={Link} href="/">
-            Home
-          </Button>
-
-          {/* Services Menu with Nested Dropdown */}
-          <Button
-            color="inherit"
-            onClick={handleMenuOpen}
-            endIcon={<ArrowDropDownIcon />}
+          {/* Desktop Navigation */}
+          <Box
             sx={{
-              '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                transition: 'background-color 0.3s',
-              },
+              display: { xs: "none", lg: "flex" },
+              flexGrow: 1,
+              justifyContent: "center",
             }}
           >
-            Services
-          </Button>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-            TransitionComponent={Fade}
-            MenuListProps={{
-              onMouseLeave: handleMenuClose,
-            }}
-            sx={{
-              '& .MuiPaper-root': {
-                backgroundColor: '#fff',
-                borderRadius: '8px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                minWidth: '200px',
-              },
-            }}
-          >
-            <MenuItem
-              onClick={handleNestedMenuOpen}
-              sx={{
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.light,
-                  color: 'white',
-                },
-              }}
-            >
-              Web Development
-            </MenuItem>
-            <Menu
-              anchorEl={nestedAnchorEl}
-              open={Boolean(nestedAnchorEl)}
-              onClose={handleMenuClose}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-              sx={{
-                '& .MuiPaper-root': {
-                  backgroundColor: '#fff',
-                  borderRadius: '8px',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                  minWidth: '200px',
-                },
-              }}
-            >
-              <MenuItem onClick={handleMenuClose}>Frontend</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Backend</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Full Stack</MenuItem>
-            </Menu>
-            <MenuItem
-              onClick={handleMenuClose}
-              sx={{
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.light,
-                  color: 'white',
-                },
-              }}
-            >
-              Mobile Development
-            </MenuItem>
-            <MenuItem
-              onClick={handleMenuClose}
-              sx={{
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.light,
-                  color: 'white',
-                },
-              }}
-            >
-              Cloud Services
-            </MenuItem>
-          </Menu>
+            <Stack direction="row" spacing={2}>
+              <Button
+                aria-controls="products-menu"
+                aria-haspopup="true"
+                onClick={handleProductsMenuOpen}
+                endIcon={
+                  <ExpandMoreIcon
+                    sx={{
+                      transform: isProductsMenuOpen ? "rotate(180deg)" : "none",
+                      transition: "transform 0.2s",
+                    }}
+                  />
+                }
+                sx={{
+                  color: "text.primary",
+                  "&:hover": { color: "#2860f5" },
+                }}
+              >
+                Products
+              </Button>
 
-          <Button color="inherit" component={Link} href="/about">
-            About
-          </Button>
-          <Button color="inherit" component={Link} href="/contact">
-            Contact
-          </Button>
-        </Box>
+              <Button
+                component={Link}
+                href="/resources"
+                sx={{
+                  color: "text.primary",
+                  "&:hover": { color: "#2860f5" },
+                }}
+              >
+                Resources
+              </Button>
 
-        {/* Mobile Menu Icon */}
-        <IconButton
-          color="inherit"
-          edge="end"
-          onClick={handleMobileMenuToggle}
-          sx={{ display: { xs: 'block', md: 'none' } }}
-        >
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
+              <Button
+                component={Link}
+                href="/pricing"
+                sx={{
+                  color: "text.primary",
+                  "&:hover": { color: "#2860f5" },
+                }}
+              >
+                Pricing
+              </Button>
 
-      {/* Mobile Menu (Optional) */}
-      {mobileOpen && (
-        <Box
+              <Button
+                component={Link}
+                href="/contact"
+                sx={{
+                  color: "text.primary",
+                  "&:hover": { color: "#2860f5" },
+                }}
+              >
+                Contact
+              </Button>
+            </Stack>
+          </Box>
+
+          {/* Desktop Buttons */}
+          <Box sx={{ display: { xs: "none", lg: "flex" }, gap: 2 }}>
+
+            <Button
+              component={Link}
+              href='/signup'
+              sx={{
+                color: "blue",
+                "&:hover": { color: "#2860f5" },
+              }}
+            >
+              Sign Up
+            </Button>
+
+            {/* <GradientButton
+              component={Link}
+              href="/auth/signup"
+              variant="contained"
+            >
+              Get started
+            </GradientButton> */}
+          </Box>
+
+          {/* Mobile Menu Button */}
+          <Box sx={{ display: { xs: "flex", lg: "none" } }}>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleMobileMenu}
+            >
+              {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Desktop Products Mega Menu */}
+      <Menu
+        id="products-menu"
+        anchorEl={productsMenuAnchor}
+        open={isProductsMenuOpen}
+        onClose={handleProductsMenuClose}
+        MenuListProps={{
+          "aria-labelledby": "products-button",
+        }}
+        PaperProps={{
+          elevation: 3,
+          sx: {
+            width: "100%",
+            maxWidth: "1280px",
+            left: "50% !important",
+            transform: "translateX(-50%) !important",
+            top: "64px !important",
+            padding: 2,
+          },
+        }}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+      >
+        <Grid container spacing={4}>
+          {productCategories.map((category) => (
+            <Grid item xs={6} key={category.name}>
+              <Typography
+                variant="h6"
+                component="h3"
+                sx={{ pb: 1, borderBottom: "1px solid", borderColor: "divider" }}
+              >
+                {category.name}
+              </Typography>
+              <List>
+                {category.items.map((item) => (
+                  <ListItem
+                    key={item.name}
+                    component={Link}
+                    href={item.href}
+                    onClick={closeAllMenus}
+                    sx={{
+                      color: "text.secondary",
+                      "&:hover": { color: "#2860f5", pl: 1 },
+                      transition: "all 0.2s",
+                    }}
+                  >
+                    <ListItemText primary={item.name} />
+                  </ListItem>
+                ))}
+              </List>
+            </Grid>
+          ))}
+        </Grid>
+      </Menu>
+
+      {/* Mobile Menu */}
+      <Collapse in={mobileMenuOpen}>
+        <Paper
           sx={{
-            display: { xs: 'block', md: 'none' },
-            backgroundColor: '#fff',
-            position: 'absolute',
-            top: '64px',
-            width: '100%',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            position: "fixed",
+            top: "64px",
+            left: 0,
+            right: 0,
+            zIndex: 1200,
+            p: 2,
           }}
+          elevation={3}
         >
-          <MenuItem component={Link} href="/" onClick={handleMobileMenuToggle}>
-            Home
-          </MenuItem>
-          <MenuItem component={Link} href="/services" onClick={handleMobileMenuToggle}>
-            Services
-          </MenuItem>
-          <MenuItem component={Link} href="/about" onClick={handleMobileMenuToggle}>
-            About
-          </MenuItem>
-          <MenuItem component={Link} href="/contact" onClick={handleMobileMenuToggle}>
-            Contact
-          </MenuItem>
-        </Box>
-      )}
-    </AppBar>
+          <List>
+            <ListItemButton
+              onClick={toggleMobileProducts}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <ListItemText primary="Products" />
+              <ExpandMoreIcon
+                sx={{
+                  transform: mobileProductsOpen ? "rotate(180deg)" : "none",
+                  transition: "transform 0.2s",
+                }}
+              />
+            </ListItemButton>
+
+            <Collapse in={mobileProductsOpen} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {productCategories.map((category) => (
+                  <Box key={category.name}>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ px: 2, pt: 1, color: "text.secondary" }}
+                    >
+                      {category.name}
+                    </Typography>
+                    {category.items.map((item) => (
+                      <ListItemButton
+                        key={item.name}
+                        component={Link}
+                        href={item.href}
+                        onClick={closeAllMenus}
+                        sx={{ pl: 4, color: "text.primary" }}
+                      >
+                        <ListItemText primary={item.name} />
+                      </ListItemButton>
+                    ))}
+                  </Box>
+                ))}
+              </List>
+            </Collapse>
+
+            <ListItemButton
+              component={Link}
+              href="/resources"
+              onClick={closeAllMenus}
+              sx={{ color: "text.primary" }}
+            >
+              <ListItemText primary="Resources" />
+            </ListItemButton>
+
+            <ListItemButton
+              component={Link}
+              href="/pricing"
+              onClick={closeAllMenus}
+              sx={{ color: "text.primary" }}
+            >
+              <ListItemText primary="Pricing" />
+            </ListItemButton>
+
+            <ListItemButton
+              component={Link}
+              href="/contact"
+              onClick={closeAllMenus}
+              sx={{ color: "text.primary" }}
+            >
+              <ListItemText primary="Contact" />
+            </ListItemButton>
+
+            <ListItemButton
+              component={Link}
+              href="/auth/signin"
+              onClick={closeAllMenus}
+              sx={{ color: "text.primary" }}
+            >
+              <ListItemText primary="Sign in" />
+            </ListItemButton>
+
+            <ListItem sx={{ justifyContent: "center", pt: 2 }}>
+              <GradientButton
+                component={Link}
+                href="/auth/signup"
+                variant="contained"
+                fullWidth
+                onClick={closeAllMenus}
+              >
+                Get started
+              </GradientButton>
+            </ListItem>
+          </List>
+        </Paper>
+      </Collapse>
+    </Box>
   );
-};
-
-export default Navbar;
+}

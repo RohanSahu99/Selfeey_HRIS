@@ -10,7 +10,7 @@ const raleway = Raleway({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={raleway.variable}>
-      <body >      
+      <body style={{backgroundColor:'#ebf5f4'}}>      
        {children}
       </body>
     </html>

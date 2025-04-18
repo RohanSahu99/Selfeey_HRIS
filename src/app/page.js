@@ -1,11 +1,12 @@
-import Image from "next/image";
+
 import styles from "./page.module.css";
-import NavBarWithNestedMenus from "@/Pages/NavBar";
+
+import HomePage from "@/Pages/HomePage";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-     <NavBarWithNestedMenus/>
+    <div >
+      <HomePage/>
     </div>
   );
 }
